@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr.Lee's 청소연구소 | 사무실·상업공간 전문 클리닝</title>
+<meta name="description" content="Mr.Lee's 청소연구소 - 사무실/상업공간 전문 청소, 친환경 세제, 체계적인 A/S 시스템">
+
+<!-- Pretendard 웹폰트 (한글 최적화) -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Tailwind에 브랜드 컬러 토큰 확장 등록
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: { DEFAULT: '#0056B3', dark: '#003D82', light: '#2E7BD6' },
+          accent: { DEFAULT: '#00A8CC', light: '#7DDBD3' },
+          base: { bg: '#F8F9FA', tint: '#EAF6F8', text: '#212529', muted: '#6C757D' }
+        },
+        fontFamily: { sans: ['Pretendard', 'sans-serif'] },
+        boxShadow: { soft: '0 10px 40px -12px rgba(0,86,179,0.18)' }
+      }
+    }
+  }
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-base-bg text-base-text antialiased">
+
+<!-- ==========================================================
+     1. HEADER / NAVIGATION
+     - 로고, GNB(회사소개/서비스안내/갤러리/이용후기/견적문의)
+     - 우측 빠른 전화상담 + 간편 견적신청 CTA
+     - 스크롤 시 배경 블러 처리, 모바일 햄버거 메뉴 지원
+=========================================================== -->
+<header id="siteHeader" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur-md transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="h-16 md:h-20 flex items-center justify-between">
+      <!-- 로고 -->
+      <a href="#home" class="flex items-center gap-2 shrink-0">
+        <span class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-white font-black text-sm">ML</span>
+        <span class="font-black text-lg md:text-xl tracking-tight text-primary-dark">Mr.Lee's <span class="font-medium text-base-text">청소연구소</span></span>
+      </a>
+
+      <!-- 데스크톱 GNB -->
+      <nav class="hidden lg:flex items-center gap-9 text-[15px] font-semibold text-base-text">
+        <a href="#about" class="hover:text-primary transition-colors">회사소개</a>
+        <a href="#services" class="hover:text-primary transition-colors">서비스 안내</a>
+        <a href="#gallery" class="hover:text-primary transition-colors">청소 갤러리</a>
+        <a href="#reviews" class="hover:text-primary transition-colors">이용후기</a>
+        <a href="#estimate" class="hover:text-primary transition-colors">견적 문의</a>
+      </nav>
+
+      <!-- 우측 CTA 영역 -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="tel:1588-0000" class="flex items-center gap-1.5 text-primary-dark font-bold text-sm hover:text-primary transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5c0 9.4 7.6 17 17 17l3-4-6-3-2 2c-2.6-1.2-4.8-3.4-6-6l2-2-3-6-4 2z"/></svg>
+          1588-0000
+        </a>
+        <a href="#estimate" class="bg-primary hover:bg-primary-dark transition-colors text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-soft">
+          간편 견적 신청
+        </a>
+      </div>
+
+      <!-- 모바일 햄버거 버튼 -->
+      <button id="menuBtn" aria-label="메뉴 열기" aria-expanded="false" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5">
+        <span class="hamburger-line block w-6 h-0.5 bg-primary-dark transition-all"></span>
+        <span class="hamburger-line block w-6 h-0.5 bg-primary-dark transition-all"></span>
+        <span class="hamburger-line block w-6 h-0.5 bg-primary-dark transition-all"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 모바일 메뉴 패널 -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-100">
+    <nav class="flex flex-col px-5 py-4 gap-1 text-base-text font-semibold">
+      <a href="#about" class="py-3 border-b border-gray-100">회사소개</a>
+      <a href="#services" class="py-3 border-b border-gray-100">서비스 안내</a>
+      <a href="#gallery" class="py-3 border-b border-gray-100">청소 갤러리</a>
+      <a href="#reviews" class="py-3 border-b border-gray-100">이용후기</a>
+      <a href="#estimate" class="py-3 border-b border-gray-100">견적 문의</a>
+      <a href="tel:1588-0000" class="mt-3 text-center py-3 rounded-full border-2 border-primary text-primary font-bold">📞 1588-0000 전화상담</a>
+      <a href="#estimate" class="mt-2 text-center py-3 rounded-full bg-primary text-white font-bold">간편 견적 신청</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ==========================================================
+     2. HERO SECTION
+     - 대형 헤드카피 + 서브카피
+     - 스톡사진 대신 블루프린트 그리드 + 물방울 리플 커스텀 SVG로
+       "청소 전/후 대비"를 상징적으로 표현 (시그니처 톤)
+     - 메인 CTA 2종
+=========================================================== -->
+<section id="home" class="relative pt-28 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-[#0069D9]">
+  <div class="absolute inset-0 blueprint-grid opacity-40"></div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative grid lg:grid-cols-2 gap-14 items-center">
+    <!-- 좌측 카피 -->
+    <div class="text-white">
+      <p class="reveal inline-flex items-center gap-2 text-accent-light text-xs md:text-sm font-bold tracking-[0.2em] mb-5 border border-white/25 rounded-full px-4 py-1.5">
+        MR. LEE'S CLEANING LAB · 사무실·상업공간 전문
+      </p>
+      <h1 class="reveal reveal-delay-1 text-4xl md:text-6xl font-black leading-[1.2] tracking-tight">
+        깨끗함의 차이가<br>
+        <span class="text-accent-light">공간의 가치</span>를 만듭니다
+      </h1>
+      <p class="reveal reveal-delay-2 mt-6 text-white/85 text-base md:text-lg leading-relaxed max-w-lg">
+        전문 장비와 베테랑 클리닝 팀, 사람과 반려동물에 안심되는 친환경 세제까지.
+        Mr.Lee's 청소연구소가 귀사의 사무실과 상업공간을 연구하듯 꼼꼼하게 관리합니다.
+      </p>
+      <div class="reveal reveal-delay-3 mt-9 flex flex-wrap gap-3">
+        <a href="#estimate" class="bg-white text-primary-dark font-bold px-7 py-4 rounded-full shadow-soft hover:-translate-y-0.5 transition-transform inline-flex items-center gap-2">
+          실시간 무료 견적 신청하기 →
+        </a>
+        <a href="tel:1588-0000" class="border-2 border-white/50 text-white font-bold px-7 py-4 rounded-full hover:bg-white/10 transition-colors inline-flex items-center gap-2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5c0 9.4 7.6 17 17 17l3-4-6-3-2 2c-2.6-1.2-4.8-3.4-6-6l2-2-3-6-4 2z"/></svg>
+          전화 문의하기
+        </a>
+      </div>
+
+      <!-- 신뢰 지표 -->
+      <div class="reveal mt-12 flex flex-wrap gap-x-10 gap-y-4 text-white/90">
+        <div><p class="text-2xl font-black text-accent-light">12<span class="text-base font-bold">년+</span></p><p class="text-xs text-white/70 mt-1">현장 경력</p></div>
+        <div><p class="text-2xl font-black text-accent-light">3,400<span class="text-base font-bold">건+</span></p><p class="text-xs text-white/70 mt-1">누적 시공</p></div>
+        <div><p class="text-2xl font-black text-accent-light">100<span class="text-base font-bold">%</span></p><p class="text-xs text-white/70 mt-1">친환경 세제</p></div>
+      </div>
+    </div>
+
+    <!-- 우측 커스텀 일러스트: 블루프린트 + 리플 -->
+    <div class="reveal reveal-delay-2 relative hidden lg:block">
+      <svg viewBox="0 0 480 460" class="w-full h-auto drop-shadow-2xl">
+        <!-- 공간(사무실 창문) 실루엣 -->
+        <rect x="60" y="40" width="360" height="380" rx="20" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <line x1="240" y1="40" x2="240" y2="420" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="60" y1="230" x2="420" y2="230" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <!-- 리플(청소 파장) -->
+        <circle class="ripple" cx="240" cy="230" r="40" fill="none" stroke="#7DDBD3" stroke-width="3"/>
+        <circle class="ripple ripple2" cx="240" cy="230" r="40" fill="none" stroke="#7DDBD3" stroke-width="3"/>
+        <circle class="ripple ripple3" cx="240" cy="230" r="40" fill="none" stroke="#00A8CC" stroke-width="3"/>
+        <!-- 중심 스파클 -->
+        <g stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+          <line x1="240" y1="205" x2="240" y2="255"/>
+          <line x1="215" y1="230" x2="265" y2="230"/>
+        </g>
+        <!-- 낙하하는 물방울 3개 -->
+        <path class="droplet-fall" d="M150 90 C150 90 138 106 138 116 a12 12 0 1 0 24 0 c0-10-12-26-12-26z" fill="#7DDBD3"/>
+        <path class="droplet-fall" style="animation-delay:0.9s" d="M330 70 C330 70 318 86 318 96 a12 12 0 1 0 24 0 c0-10-12-26-12-26z" fill="#00A8CC"/>
+        <path class="droplet-fall" style="animation-delay:1.7s" d="M360 300 C360 300 348 316 348 326 a10 10 0 1 0 20 0 c0-10-10-26-10-26z" fill="#ffffff" opacity="0.8"/>
+        <!-- 코너 라벨 -->
+        <text x="82" y="70" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="700" letter-spacing="2">BEFORE</text>
+        <text x="330" y="405" fill="#7DDBD3" font-size="11" font-weight="700" letter-spacing="2">AFTER</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================
+     3. ABOUT & KEY FEATURES ("왜 Mr.Lee's 인가?")
+     - 짧은 회사 소개 + 핵심 강점 4카드
+=========================================================== -->
+<section id="about" class="py-20 md:py-28 max-w-7xl mx-auto px-5 md:px-8">
+  <div class="reveal text-center max-w-2xl mx-auto mb-16">
+    <p class="text-accent font-bold text-xs tracking-[0.2em] mb-3">WHY MR.LEE'S</p>
+    <h2 class="text-3xl md:text-4xl font-black text-primary-dark leading-snug">
+      "직접 연구하듯 청소합니다"
+    </h2>
+    <p class="mt-4 text-base-muted leading-relaxed">
+      Mr.Lee's 청소연구소는 사무실과 상업공간의 오염 원인을 데이터처럼 분석하고,
+      공간 특성에 맞는 세제와 장비를 처방하듯 선택합니다. 눈에 보이는 먼지뿐 아니라
+      직원과 고객이 실제로 느끼는 공기와 위생까지 책임지는 것이 저희의 기준입니다.
+    </p>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <!-- 강점 카드 1 -->
+    <div class="reveal bg-white rounded-2xl p-7 shadow-soft border border-gray-100 hover:-translate-y-1.5 transition-transform">
+      <div class="w-12 h-12 rounded-xl bg-base-tint flex items-center justify-center mb-5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0056B3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 4 6 7.5 6 11.5A6 6 0 1 1 6 13.5C6 9.5 9 6 12 2z"/></svg>
+      </div>
+      <h3 class="font-bold text-lg mb-2">100% 친환경 세제</h3>
+      <p class="text-sm text-base-muted leading-relaxed">인체·반려동물에 무해한 세제만 사용해 청소 직후에도 안심하고 공간을 사용할 수 있습니다.</p>
+    </div>
+    <!-- 강점 카드 2 -->
+    <div class="reveal reveal-delay-1 bg-white rounded-2xl p-7 shadow-soft border border-gray-100 hover:-translate-y-1.5 transition-transform">
+      <div class="w-12 h-12 rounded-xl bg-base-tint flex items-center justify-center mb-5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0056B3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.2"/><path d="M2 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/><circle cx="18" cy="8" r="2.6"/><path d="M15.2 14.5c2.7.3 4.8 2.4 4.8 5.5"/></svg>
+      </div>
+      <h3 class="font-bold text-lg mb-2">체계적인 전문 인력</h3>
+      <p class="text-sm text-base-muted leading-relaxed">100% 자체 교육을 수료한 정직원 클리닝 마스터가 유니폼·명찰 착용 후 방문합니다.</p>
+    </div>
+    <!-- 강점 카드 3 -->
+    <div class="reveal reveal-delay-2 bg-white rounded-2xl p-7 shadow-soft border border-gray-100 hover:-translate-y-1.5 transition-transform">
+      <div class="w-12 h-12 rounded-xl bg-base-tint flex items-center justify-center mb-5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0056B3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v6c0 5-3.4 8.8-8 10.5-4.6-1.7-8-5.5-8-10.5v-6L12 2z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+      </div>
+      <h3 class="font-bold text-lg mb-2">A/S 보장 시스템</h3>
+      <p class="text-sm text-base-muted leading-relaxed">시공 후 불만족 구역은 재방문 케어까지 책임지는 사후관리 시스템을 운영합니다.</p>
+    </div>
+    <!-- 강점 카드 4 -->
+    <div class="reveal reveal-delay-3 bg-white rounded-2xl p-7 shadow-soft border border-gray-100 hover:-translate-y-1.5 transition-transform">
+      <div class="w-12 h-12 rounded-xl bg-base-tint flex items-center justify-center mb-5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0056B3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg>
+      </div>
+      <h3 class="font-bold text-lg mb-2">구석구석 정밀 케어</h3>
+      <p class="text-sm text-base-muted leading-relaxed">파티션 틈, 바닥 몰딩, 유리창까지 구역별 전용 장비로 빈틈없이 관리합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================
+     4. SERVICES SECTION
+     - 탭 메뉴로 4개 서비스 구분
+     - 각 서비스별 썸네일, 설명, 자세히보기 버튼
+=========================================================== -->
+<section id="services" class="py-20 md:py-28 bg-base-tint">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="reveal text-center max-w-2xl mx-auto mb-12">
+      <p class="text-accent font-bold text-xs tracking-[0.2em] mb-3">SERVICE</p>
+      <h2 class="text-3xl md:text-4xl font-black text-primary-dark">공간에 맞는 전문 클리닝</h2>
+      <p class="mt-4 text-base-muted">업무 환경 특성과 재질을 분석해 최적화된 서비스를 제공합니다.</p>
+    </div>
+
+    <!-- 탭 버튼 -->
+    <div id="serviceTabs" class="reveal flex flex-wrap justify-center gap-2.5 mb-10" role="tablist" aria-label="서비스 종류">
+      <button class="service-tab" data-tab="move" role="tab" aria-selected="true" aria-controls="panel-move" id="tab-move">
+        <span class="px-5 py-2.5 rounded-full text-sm font-bold transition-colors inline-block">입주·이사청소</span>
+      </button>
+      <button class="service-tab" data-tab="office" role="tab" aria-selected="false" aria-controls="panel-office" id="tab-office">
+        <span class="px-5 py-2.5 rounded-full text-sm font-bold transition-colors inline-block">상가·사무실청소</span>
+      </button>
+      <button class="service-tab" data-tab="special" role="tab" aria-selected="false" aria-controls="panel-special" id="tab-special">
+        <span class="px-5 py-2.5 rounded-full text-sm font-bold transition-colors inline-block">특수·방역케어</span>
+      </button>
+      <button class="service-tab" data-tab="home" role="tab" aria-selected="false" aria-controls="panel-home" id="tab-home">
+        <span class="px-5 py-2.5 rounded-full text-sm font-bold transition-colors inline-block">가전·홈케어</span>
+      </button>
+    </div>
+
+    <!-- 탭 패널: 입주/이사청소 -->
+    <div class="service-panel active grid md:grid-cols-2 gap-8 items-center" id="panel-move" role="tabpanel" aria-labelledby="tab-move">
+      <img src="images/service-move.jpg" alt="입주·이사청소 서비스 이미지" class="rounded-2xl shadow-soft w-full object-cover aspect-[4/3]">
+      <div>
+        <h3 class="text-2xl font-black text-primary-dark mb-3">입주·이사청소</h3>
+        <p class="text-base-muted leading-relaxed mb-5">신축·구옥 입주 전, 이사 후 새 공간을 위생적으로 시작할 수 있도록 진공 청소부터 창틀·샤시, 싱크대 살균까지 전 구역을 케어합니다.</p>
+        <ul class="space-y-2 mb-6 text-sm text-base-text">
+          <li class="flex items-center gap-2">✓ 하자 점검 체크 서비스 포함</li>
+          <li class="flex items-center gap-2">✓ 고온 스팀 살균 세척</li>
+          <li class="flex items-center gap-2">✓ 실평수 무료 현장 견적</li>
+        </ul>
+        <a href="#estimate" class="inline-block bg-primary text-white font-bold px-6 py-3 rounded-full hover:bg-primary-dark transition-colors">자세히 보기</a>
+      </div>
+    </div>
+
+    <!-- 탭 패널: 상가/사무실청소 -->
+    <div class="service-panel grid md:grid-cols-2 gap-8 items-center" id="panel-office" role="tabpanel" aria-labelledby="tab-office">
+      <img src="images/service-office.jpg" alt="사무실·상업공간 청소 서비스 이미지" class="rounded-2xl shadow-soft w-full object-cover aspect-[4/3]">
+      <div>
+        <h3 class="text-2xl font-black text-primary-dark mb-3">상가·사무실청소</h3>
+        <p class="text-base-muted leading-relaxed mb-5">회의실·개인업무공간·탕비실·화장실까지, 다양한 사무실 청소 경험을 가진 전문 인력이 정기 또는 1회성으로 방문합니다.</p>
+        <ul class="space-y-2 mb-6 text-sm text-base-text">
+          <li class="flex items-center gap-2">✓ 정기 계약 시 방문 스케줄 관리</li>
+          <li class="flex items-center gap-2">✓ 유리창·바닥·집기 구역별 세분화 작업</li>
+          <li class="flex items-center gap-2">✓ 사업장 특성 맞춤 세제 처방</li>
+        </ul>
+        <a href="#estimate" class="inline-block bg-primary text-white font-bold px-6 py-3 rounded-full hover:bg-primary-dark transition-colors">자세히 보기</a>
+      </div>
+    </div>
+
+    <!-- 탭 패널: 특수/방역케어 -->
+    <div class="service-panel grid md:grid-cols-2 gap-8 items-center" id="panel-special" role="tabpanel" aria-labelledby="tab-special">
+      <img src="images/service-special.jpg" alt="특수·방역케어 서비스 이미지" class="rounded-2xl shadow-soft w-full object-cover aspect-[4/3]">
+      <div>
+        <h3 class="text-2xl font-black text-primary-dark mb-3">특수·방역케어</h3>
+        <p class="text-base-muted leading-relaxed mb-5">감염병 예방을 위한 소독·방역부터 카펫 딥클리닝, 곰팡이 제거 등 일반 청소로 해결되지 않는 오염까지 전문 장비로 대응합니다.</p>
+        <ul class="space-y-2 mb-6 text-sm text-base-text">
+          <li class="flex items-center gap-2">✓ 전문 소독·방역 자격 보유 인력</li>
+          <li class="flex items-center gap-2">✓ 카펫·바닥재 전용 산업용 장비</li>
+          <li class="flex items-center gap-2">✓ 사고 대비 영업배상책임보험 가입</li>
+        </ul>
+        <a href="#estimate" class="inline-block bg-primary text-white font-bold px-6 py-3 rounded-full hover:bg-primary-dark transition-colors">자세히 보기</a>
+      </div>
+    </div>
+
+    <!-- 탭 패널: 가전/홈케어 -->
+    <div class="service-panel grid md:grid-cols-2 gap-8 items-center" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+      <img src="images/service-home.jpg" alt="가전·홈케어 서비스 이미지" class="rounded-2xl shadow-soft w-full object-cover aspect-[4/3]">
+      <div>
+        <h3 class="text-2xl font-black text-primary-dark mb-3">가전·홈케어</h3>
+        <p class="text-base-muted leading-relaxed mb-5">에어컨·냉장고·세탁기 분해 청소부터 매트리스·소파 케어까지, 사무공간의 탕비실 가전과 휴게공간을 쾌적하게 유지합니다.</p>
+        <ul class="space-y-2 mb-6 text-sm text-base-text">
+          <li class="flex items-center gap-2">✓ 가전 분해·세척 전문 기술</li>
+          <li class="flex items-center gap-2">✓ 항균·탈취 마감 처리</li>
+          <li class="flex items-center gap-2">✓ 정기 구독형 관리 상담 가능</li>
+        </ul>
+        <a href="#estimate" class="inline-block bg-primary text-white font-bold px-6 py-3 rounded-full hover:bg-primary-dark transition-colors">자세히 보기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================
+     5. PROCESS SECTION
+     - 실제 진행 순서이므로 01~04 넘버링 사용이 타당한 구간
+=========================================================== -->
+<section class="py-20 md:py-28 max-w-7xl mx-auto px-5 md:px-8">
+  <div class="reveal text-center max-w-2xl mx-auto mb-16">
+    <p class="text-accent font-bold text-xs tracking-[0.2em] mb-3">PROCESS</p>
+    <h2 class="text-3xl md:text-4xl font-black text-primary-dark">청소 진행 절차</h2>
+    <p class="mt-4 text-base-muted">상담부터 A/S까지, 4단계의 투명한 프로세스로 진행합니다.</p>
+  </div>
+
+  <div class="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+    <!-- 연결선 (데스크톱) -->
+    <div class="hidden lg:block absolute top-9 left-[12.5%] right-[12.5%] h-0.5 process-line"></div>
+
+    <div class="reveal relative text-center">
+      <div class="relative z-10 w-[72px] h-[72px] mx-auto rounded-full bg-white border-2 border-primary flex items-center justify-center font-black text-primary text-xl shadow-soft">01</div>
+      <h3 class="mt-5 font-bold text-lg">상담 및 견적</h3>
+      <p class="mt-2 text-sm text-base-muted leading-relaxed">전화 또는 온라인 폼으로<br>현장 상황을 파악합니다</p>
+    </div>
+    <div class="reveal reveal-delay-1 relative text-center">
+      <div class="relative z-10 w-[72px] h-[72px] mx-auto rounded-full bg-white border-2 border-primary flex items-center justify-center font-black text-primary text-xl shadow-soft">02</div>
+      <h3 class="mt-5 font-bold text-lg">일정 확정</h3>
+      <p class="mt-2 text-sm text-base-muted leading-relaxed">공간 규모에 맞춰<br>방문 일정을 조율합니다</p>
+    </div>
+    <div class="reveal reveal-delay-2 relative text-center">
+      <div class="relative z-10 w-[72px] h-[72px] mx-auto rounded-full bg-white border-2 border-primary flex items-center justify-center font-black text-primary text-xl shadow-soft">03</div>
+      <h3 class="mt-5 font-bold text-lg">맞춤 정밀 청소</h3>
+      <p class="mt-2 text-sm text-base-muted leading-relaxed">전문 마스터가 구역별<br>맞춤 장비로 작업합니다</p>
+    </div>
+    <div class="reveal reveal-delay-3 relative text-center">
+      <div class="relative z-10 w-[72px] h-[72px] mx-auto rounded-full bg-white border-2 border-primary flex items-center justify-center font-black text-primary text-xl shadow-soft">04</div>
+      <h3 class="mt-5 font-bold text-lg">검수 및 A/S</h3>
+      <p class="mt-2 text-sm text-base-muted leading-relaxed">고객 확인 후 미흡한 부분은<br>재방문으로 책임집니다</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================
+     6. PORTFOLIO / BEFORE & AFTER GALLERY
+     - 시그니처 컴포넌트: 드래그로 비교하는 비포&애프터 슬라이더
+     - 하단에는 추가 사례 그리드
+=========================================================== -->
+<section id="gallery" class="py-20 md:py-28 bg-primary-dark relative overflow-hidden">
+  <div class="absolute inset-0 blueprint-grid opacity-[0.06]"></div>
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative">
+    <div class="reveal text-center max-w-2xl mx-auto mb-12">
+      <p class="text-accent-light font-bold text-xs tracking-[0.2em] mb-3">BEFORE &amp; AFTER</p>
+      <h2 class="text-3xl md:text-4xl font-black text-white">직접 확인하는 청소의 차이</h2>
+      <p class="mt-4 text-white/70">슬라이더를 좌우로 드래그해서 시공 전후를 비교해 보세요.</p>
+    </div>
+
+    <!-- 시그니처: 드래그 비교 슬라이더 -->
+    <div class="reveal max-w-3xl mx-auto mb-14">
+      <div class="ba-slider" id="baSlider">
+        <img src="images/before.jpg" alt="청소 전 사무실 바닥 상태" class="ba-before">
+        <div class="ba-after-wrap" id="baAfterWrap" style="width:50%;">
+          <img src="images/after.jpg" alt="청소 후 사무실 바닥 상태" style="width: 900px; max-width: none;">
+        </div>
+        <div class="ba-handle" id="baHandle" style="left:50%;"></div>
+        <span class="ba-label ba-label-before">BEFORE</span>
+        <span class="ba-label ba-label-after">AFTER</span>
+      </div>
+      <p class="text-center text-white/50 text-xs mt-3">예시 이미지 · 실제 시공 사진으로 교체 가능합니다</p>
+    </div>
+
+    <!-- 추가 사례 그리드 -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:-translate-y-1 transition-transform">
+        <img src="images/case-office.jpg" alt="사무실 전체 청소 사례" class="w-full aspect-[3/2] object-cover">
+        <p class="p-4 text-white/85 text-sm font-semibold">강남 IT기업 사무실 정기청소</p>
+      </div>
+      <div class="reveal reveal-delay-1 bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:-translate-y-1 transition-transform">
+        <img src="images/case-cafe.jpg" alt="매장 유리창 및 바닥 케어 사례" class="w-full aspect-[3/2] object-cover">
+        <p class="p-4 text-white/85 text-sm font-semibold">홍대 카페 매장 유리·바닥 케어</p>
+      </div>
+      <div class="reveal reveal-delay-2 bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:-translate-y-1 transition-transform">
+        <img src="images/case-logistics.jpg" alt="물류센터 방역 소독 사례" class="w-full aspect-[3/2] object-cover">
+        <p class="p-4 text-white/85 text-sm font-semibold">물류센터 정기 방역·소독</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================
+     7. CUSTOMER REVIEWS
+     - 카드형 캐러셀, 좌우 화살표로 이동
+=========================================================== -->
+<section id="reviews" class="py-20 md:py-28 max-w-7xl mx-auto px-5 md:px-8">
+  <div class="reveal text-center max-w-2xl mx-auto mb-14">
+    <p class="text-accent font-bold text-xs tracking-[0.2em] mb-3">REVIEW</p>
+    <h2 class="text-3xl md:text-4xl font-black text-primary-dark">고객님이 남겨주신 이야기</h2>
+  </div>
+
+  <div class="relative">
+    <div class="overflow-hidden">
+      <div id="reviewTrack" class="review-track flex gap-5">
+        <!-- 후기 카드 1 -->
+        <div class="min-w-full sm:min-w-[calc(50%-10px)] lg:min-w-[calc(33.333%-14px)] bg-white rounded-2xl p-7 border border-gray-100 shadow-soft">
+          <p class="text-accent-light text-lg tracking-widest mb-3">★★★★★</p>
+          <p class="text-base-text leading-relaxed text-[15px]">"매주 출근할 때마다 공기가 다르다는 걸 느껴요. 파티션 틈새까지 신경 써주셔서 직원들 만족도가 확실히 올라갔습니다."</p>
+          <p class="mt-5 text-sm font-bold text-base-muted">— 강남 IT기업 총무팀</p>
+        </div>
+        <!-- 후기 카드 2 -->
+        <div class="min-w-full sm:min-w-[calc(50%-10px)] lg:min-w-[calc(33.333%-14px)] bg-white rounded-2xl p-7 border border-gray-100 shadow-soft">
+          <p class="text-accent-light text-lg tracking-widest mb-3">★★★★★</p>
+          <p class="text-base-text leading-relaxed text-[15px]">"오픈 전 매장 청소를 맡겼는데 유리창이 이렇게 투명할 수 있나 싶었어요. 친환경 세제라 손님 앞에서도 안심됩니다."</p>
+          <p class="mt-5 text-sm font-bold text-base-muted">— 홍대 카페 사장님</p>
+        </div>
+        <!-- 후기 카드 3 -->
+        <div class="min-w-full sm:min-w-[calc(50%-10px)] lg:min-w-[calc(33.333%-14px)] bg-white rounded-2xl p-7 border border-gray-100 shadow-soft">
+          <p class="text-accent-light text-lg tracking-widest mb-3">★★★★★</p>
+          <p class="text-base-text leading-relaxed text-[15px]">"물류센터 특성상 먼지가 정말 많았는데, 정기 방역 이후로 관리가 확실히 편해졌습니다. A/S 요청도 빠르게 처리해 주셨어요."</p>
+          <p class="mt-5 text-sm font-bold text-base-muted">— OO물류센터 관리팀</p>
+        </div>
+        <!-- 후기 카드 4 -->
+        <div class="min-w-full sm:min-w-[calc(50%-10px)] lg:min-w-[calc(33.333%-14px)] bg-white rounded-2xl p-7 border border-gray-100 shadow-soft">
+          <p class="text-accent-light text-lg tracking-widest mb-3">★★★★★</p>
+          <p class="text-base-text leading-relaxed text-[15px]">"견적 요청부터 시공까지 진행이 정말 체계적이었습니다. 견적서도 명확하고 추가 비용 없이 안내받은 그대로 진행됐어요."</p>
+          <p class="mt-5 text-sm font-bold text-base-muted">— 판교 스타트업 대표</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 캐러셀 컨트롤 -->
+    <div class="flex justify-center gap-3 mt-8">
+      <button id="reviewPrev" aria-label="이전 후기" class="w-11 h-11 rounded-full border-2 border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors">←</button>
+      <button id="reviewNext" aria-label="다음 후기" class="w-11 h-11 rounded-full border-2 border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================
+     8. QUICK ESTIMATE / INQUIRY FORM
+     - 이름/연락처/서비스종류/지역·평수/문의내용
+     - 개인정보 수집 동의 체크박스
+=========================================================== -->
+<section id="estimate" class="py-20 md:py-28 bg-base-tint">
+  <div class="max-w-3xl mx-auto px-5 md:px-8">
+    <div class="reveal text-center mb-12">
+      <p class="text-accent font-bold text-xs tracking-[0.2em] mb-3">FREE ESTIMATE</p>
+      <h2 class="text-3xl md:text-4xl font-black text-primary-dark">간편 견적 신청</h2>
+      <p class="mt-4 text-base-muted">아래 정보를 남겨주시면 담당 매니저가 빠르게 연락드립니다.</p>
+    </div>
+
+    <form id="estimateForm" class="reveal bg-white rounded-3xl shadow-soft p-6 md:p-10 grid gap-5">
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label for="fName" class="block text-sm font-bold mb-2">이름 <span class="text-accent">*</span></label>
+          <input id="fName" name="name" type="text" required placeholder="홍길동" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-primary transition-colors">
+        </div>
+        <div>
+          <label for="fPhone" class="block text-sm font-bold mb-2">연락처 <span class="text-accent">*</span></label>
+          <input id="fPhone" name="phone" type="tel" required placeholder="010-0000-0000" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-primary transition-colors">
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label for="fService" class="block text-sm font-bold mb-2">서비스 종류 <span class="text-accent">*</span></label>
+          <select id="fService" name="service" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-primary transition-colors bg-white">
+            <option value="">선택해주세요</option>
+            <option>입주·이사청소</option>
+            <option>상가·사무실청소</option>
+            <option>특수·방역케어</option>
+            <option>가전·홈케어</option>
+          </select>
+        </div>
+        <div>
+          <label for="fRegion" class="block text-sm font-bold mb-2">지역 / 평수</label>
+          <input id="fRegion" name="region" type="text" placeholder="예) 서울 강남구 / 40평" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-primary transition-colors">
+        </div>
+      </div>
+
+      <div>
+        <label for="fMessage" class="block text-sm font-bold mb-2">문의 내용</label>
+        <textarea id="fMessage" name="message" rows="4" placeholder="공간 상태나 원하시는 방문 일정을 자유롭게 남겨주세요." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-primary transition-colors resize-none"></textarea>
+      </div>
+
+      <label class="flex items-start gap-2.5 text-xs text-base-muted">
+        <input type="checkbox" name="privacy" required class="privacy mt-0.5 w-4 h-4">
+        <span>[필수] 개인정보 수집 및 이용에 동의합니다. 입력하신 정보는 견적 상담 목적 외에는 사용되지 않으며, 상담 완료 후 안전하게 폐기됩니다.</span>
+      </label>
+
+      <button type="submit" class="bg-primary hover:bg-primary-dark transition-colors text-white font-bold py-4 rounded-xl text-base shadow-soft">
+        견적 신청하기
+      </button>
+
+      <p id="formSuccess" class="hidden text-center text-sm font-bold text-primary bg-base-tint rounded-xl py-3">
+        ✓ 신청이 접수되었습니다. 담당 매니저가 곧 연락드리겠습니다.
+      </p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ==========================================================
+     9. FOOTER
+     - 상호/고객센터/사업자정보/블로그 링크/카피라이트
+=========================================================== -->
+<footer class="bg-primary-dark text-white/70 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+      <div>
+        <p class="flex items-center gap-2 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-white font-black text-xs">ML</span>
+          <span class="font-black text-white text-lg">Mr.Lee's 청소연구소</span>
+        </p>
+        <p class="text-sm leading-relaxed">사무실·상업공간을 연구하듯 관리하는<br>전문 클리닝 브랜드입니다.</p>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-4 text-sm tracking-wide">고객센터</p>
+        <p class="text-2xl font-black text-accent-light mb-1">1588-0000</p>
+        <p class="text-sm">평일 09:00 - 18:00 (주말·공휴일 휴무)</p>
+        <a href="https://blog.naver.com/yellowdavid" target="_blank" rel="noopener" class="inline-block mt-3 text-sm underline underline-offset-4 hover:text-accent-light transition-colors">네이버 블로그 바로가기 ↗</a>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-4 text-sm tracking-wide">사업자 정보</p>
+        <ul class="text-sm space-y-1.5">
+          <li>상호명: Mr.Lee's 청소연구소</li>
+          <li>대표: 이OO</li>
+          <li>사업자등록번호: 000-00-00000</li>
+          <li>주소: 서울특별시 OO구 OO로 00</li>
+        </ul>
+      </div>
+    </div>
+    <p class="pt-6 text-xs text-white/40">© 2026 Mr.Lee's Cleaning Lab. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- 플로팅 빠른 전화 버튼 (모바일 우선 접근성) -->
+<a href="tel:1588-0000" aria-label="전화 문의하기" class="fab-pulse fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center shadow-2xl">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="relative"><path d="M3 5c0 9.4 7.6 17 17 17l3-4-6-3-2 2c-2.6-1.2-4.8-3.4-6-6l2-2-3-6-4 2z"/></svg>
+</a>
+
+<script src="script.js"></script>
+
+</body>
+</html>
